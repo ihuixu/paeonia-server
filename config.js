@@ -25,16 +25,16 @@ for (var i in virtualHost) {
 	}
 
 	['site', 'path'].map(function(name){
-		var configPath = path.join(appConfigPath, name + '.json')
+		var filePath = path.join(appConfigPath, name + '.json')
 		var config = {}
 
-		if(!fs.existsSync(configPath)){
+		if(!fs.existsSync(filePath)){
 			config = require('./config/' + name + '.json')
 
-			file.mkFile(configPath, JSON.stringify(config, null, 4))
+			file.mkFile(filePath, JSON.stringify(config, null, 4))
 
 		}else{
-			config = require(configPath)
+			config = require(filePath)
 		}
 
 		appConfig[name] = config
