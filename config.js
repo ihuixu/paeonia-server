@@ -1,8 +1,8 @@
 var path = require('path')
 var fs = require('fs')
-var cPath = require ('./config/path.json')
+var base = require ('./config/base.json')
+var file = require('./base/file')
 
-exports.path = cPath;
 exports.etc = require ('./config/etc.json') 
 exports.api = require ('./config/api.json'); ;
 
@@ -10,22 +10,36 @@ var virtualHost = require('./config/virtual_host.json')
 exports.virtualHost = virtualHost
 
 for (var i in virtualHost) {
-	var hostPath = path.join(cPath.appPath, virtualHost[i])
+	var hostPath = path.join(base.appPath, virtualHost[i])
 	var appConfig = {}
-	var appStaticPath = path.join(hostPath,  '/static/config.json')
-	var appConfigPath = path.join(hostPath,  '/config/')
 
 	appConfig.hostPath = hostPath
+
+	var appStaticPath = path.join(hostPath,  '/static/config.json')
 	appConfig.static = fs.existsSync(appStaticPath) ? require(appStaticPath) : {}
 
+	var appConfigPath = path.join(hostPath,  '/config/')
 
+	if(!fs.existsSync(appConfigPath)){
+		file.mkDir(appConfigPath)	
+	}
 
-	var configs = ['site', 'path']
-	configs.map(function(name){
+	['site', 'path'].map(function(name){
 		var configPath = path.join(appConfigPath, name + '.json')
-		appConfig[name] = fs.existsSync(configPath) ? require(configPath) : {}
-	})
+		var config = {}
 
+		if(!fs.existsSync(configPath)){
+			config = require('./config/' + name + '.json')
+
+			file.mkFile(configPath, JSON.stringify(config, null, 4))
+
+		}else{
+			config = require(configPath)
+		}
+
+		appConfig[name] = config
+
+	})
 
 	exports[virtualHost[i]] = appConfig
 }
