@@ -7,20 +7,26 @@ exports.etc = require ('./config/etc.json')
 exports.api = require ('./config/api.json'); ;
 
 var virtualHost = require('./config/virtual_host.json')
+exports.virtualHost = virtualHost
+
 for (var i in virtualHost) {
-	var hostPath = virtualHost[i]
+	var hostPath = path.join(cPath.appPath, virtualHost[i])
 	var appConfig = {}
+	var appStaticPath = path.join(hostPath,  '/static/config.json')
+	var appConfigPath = path.join(hostPath,  '/config/')
 
-	var staticConfigPath = path.resolve(cPath.appPath + hostPath + '/static/config.json')
-	var siteConfigPath = path.resolve(cPath.appPath + hostPath + '/config/site.json')
+	appConfig.hostPath = hostPath
+	appConfig.static = fs.existsSync(appStaticPath) ? require(appStaticPath) : {}
 
-	appConfig.static = fs.existsSync(staticConfigPath) ? require(staticConfigPath) : {}
-	appConfig.site = fs.existsSync(siteConfigPath) ? require(siteConfigPath) : {}
 
-	console.log('load ' + hostPath + ' app config success...')
 
-	var tplPre = hostPath.replace(/\//g, '')
-	exports[tplPre] = appConfig
+	var configs = ['site', 'path']
+	configs.map(function(name){
+		var configPath = path.join(appConfigPath, name + '.json')
+		appConfig[name] = fs.existsSync(configPath) ? require(configPath) : {}
+	})
+
+
+	exports[i] = appConfig
 }
 
-exports.virtualHost = virtualHost

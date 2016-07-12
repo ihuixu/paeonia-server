@@ -1,4 +1,6 @@
 var path = require('path')
+var fs = require('fs')
+
 var config = require('./config')
 
 var koa = require('koa');
@@ -12,20 +14,17 @@ app.use(function *(next){
   console.log('%s %s - %s', this.method, this.host, this.url, ms+'ms');
 });
 
-// response
 
 app.use(function *(next){
-	
-	this.hostPath = path.join(config.path.appPath, config.virtualHost[this.host])
-  yield next;
+	this.appConfig = config[this.host]
 
+  yield next;
 });
 
 
-
 app.use(function *(next){
 
-  this.body = 'Hello World' + this.hostPath;
+  this.body = 'Hello World' + this.appConfig.hostPath;
 
 });
 
