@@ -1,1 +1,1 @@
-#paeonia
+#paeonia-server
