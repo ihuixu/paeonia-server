@@ -27,6 +27,6 @@ for (var i in virtualHost) {
 	})
 
 
-	exports[i] = appConfig
+	exports[virtualHost[i]] = appConfig
 }
 

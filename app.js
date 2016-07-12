@@ -16,7 +16,8 @@ app.use(function *(next){
 
 
 app.use(function *(next){
-	this.appConfig = config[this.host]
+	var hostPath = config.virtualHost[this.host]
+	this.appConfig = config[hostPath]
 
   yield next;
 });
@@ -24,7 +25,7 @@ app.use(function *(next){
 
 app.use(function *(next){
 
-  this.body = 'Hello World' + this.appConfig.hostPath;
+  this.body = this.appConfig;
 
 });
 
