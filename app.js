@@ -8,23 +8,19 @@ var app = koa();
 
 // logger
 app.use(function *(next){
-  var start = new Date;
-  yield next;
-  var ms = new Date - start;
-  console.log('%s %s - %s', this.method, this.host, this.url, ms+'ms');
+	var start = new Date;
+	yield next;
+	var ms = new Date - start;
+	console.log('%s %s - %s', this.method, this.host, this.url, ms+'ms');
 });
-
 
 app.use(function *(next){
 	this.config = config[config.virtualHost[this.host]]
-
-  yield next;
+	yield next;
 });
 
-
 app.use(function *(next){
-
-  this.body = this.config;
+	this.body = this.config;
 
 });
 

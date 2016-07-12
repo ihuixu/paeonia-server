@@ -42,9 +42,9 @@ for (var i in virtualHost) {
 	})
 
 	var paths = require(path.join(appConfigPath, 'path.json'))
-	for(var i in paths){
+	for(var j in paths){
 
-		var dirPath = path.join(appPath, paths[i]) 
+		var dirPath = path.join(appPath, paths[j]) 
 
 		if(!fs.existsSync(dirPath)){
 			file.mkDir(dirPath)	
