@@ -1,0 +1,7 @@
+{
+	"hosts": {
+		"apis" : "apis.paeonia.com"
+	},
+	"debug":true,
+	"timeout": 5000
+}
