@@ -35,9 +35,13 @@ app.use(function *(next){
 app.use(function *(next){
 	route.call(this)
 
-	var data = yield this.bridge()
+	var data = {}
 
-	yield this.listen(data)
+	if(this.bridge)
+		data = yield this.bridge()
+
+	if(this.listen)
+		yield this.listen(data)
 
 })
 

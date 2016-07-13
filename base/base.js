@@ -2,7 +2,6 @@ var Promise = require('bluebird')
 
 module.exports = {	
 	bindDefault : function(php){
-		console.log('bindDefault')
 	}
 
 	, bridgeMuch : function(php){
@@ -11,7 +10,6 @@ module.exports = {
 				var t = setTimeout(function(){
 					var data = '123456'
 
-					console.log('bridge', data)
 					resolve(data)
 
 				}, 3000)
@@ -24,7 +22,6 @@ module.exports = {
 		this.listen = function(data){
 
 			return function *(){
-				console.log('listen', data)
 				callback.call(mSelf, data)
 			}
 		}
