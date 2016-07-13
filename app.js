@@ -1,6 +1,4 @@
 var path = require('path')
-var fs = require('fs')
-var Promise = require('bluebird')
 
 var config = require('./config')
 var base = require('./base/base')
