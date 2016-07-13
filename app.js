@@ -33,9 +33,7 @@ app.use(function *(next){
 })
 
 app.use(function *(next){
-	var controllerBase = path.join(__dirname, this.config.hostPath, this.config.path.controller)
-
-	route.call(this, controllerBase)
+	route.call(this)
 
 	var data = yield this.bridge()
 

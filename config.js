@@ -10,7 +10,7 @@ var virtualHost = require('./config/virtual_host.json')
 exports.virtualHost = virtualHost
 
 for (var i in virtualHost) {
-	var hostPath = path.join(base.appPath, virtualHost[i])
+	var hostPath = path.join(__dirname, base.appPath, virtualHost[i])
 	var appConfig = {}
 
 	appConfig.hostPath = hostPath

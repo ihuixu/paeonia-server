@@ -1,7 +1,9 @@
 var path = require('path')
 var fs = require('fs')
 
-module.exports = function(controllerBase){	
+module.exports = function(){	
+	var controllerBase = path.join(this.config.hostPath, this.config.path.controller)
+
 	var arr = this.url.split('/')
 	var args = arr.pop()
 	var method = 'index'
