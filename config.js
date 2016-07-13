@@ -10,15 +10,15 @@ var virtualHost = require('./config/virtual_host.json')
 exports.virtualHost = virtualHost
 
 for (var i in virtualHost) {
-	var appPath = path.join(base.appPath, virtualHost[i])
+	var hostPath = path.join(base.appPath, virtualHost[i])
 	var appConfig = {}
 
-	appConfig.appPath = appPath
+	appConfig.hostPath = hostPath
 
-	var appStaticPath = path.join(appPath,  '/static/config.json')
+	var appStaticPath = path.join(hostPath,  '/static/config.json')
 	appConfig.static = fs.existsSync(appStaticPath) ? require(appStaticPath) : {}
 
-	var appConfigPath = path.join(appPath,  '/config/')
+	var appConfigPath = path.join(hostPath,  '/config/')
 
 	if(!fs.existsSync(appConfigPath)){
 		file.mkDir(appConfigPath)	
@@ -44,7 +44,7 @@ for (var i in virtualHost) {
 	var paths = require(path.join(appConfigPath, 'path.json'))
 	for(var j in paths){
 
-		var dirPath = path.join(appPath, paths[j]) 
+		var dirPath = path.join(hostPath, paths[j]) 
 
 		if(!fs.existsSync(dirPath)){
 			file.mkDir(dirPath)	
