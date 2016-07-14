@@ -6,8 +6,8 @@
 		"views": "views/"
 	},
 	"hosts": {
-		"xhwww.paeonia.com" : "www",
-		"xhm.paeonia.com" : "m"
+		"demo1.paeonia.com" : "demo1",
+		"demo2.paeonia.com" : "demo2"
 	},
 	"site": {
 		"pageTitle": "pageTitle",
@@ -15,10 +15,10 @@
 		"description": "description"
 	},
 	"apis": {
-		"v" : "pandora.service.lehe.com"
+		"api1" : "api1.com"
 	},
 	"hostDefault": {
-		"paeonia/m": "welcome"
+		"demo1": "welcome"
 	},
 	"etc": {
 		"debug":true,
