@@ -2,7 +2,7 @@ var server = require('paeonia-server')
 var config = require('./config.json')
 var fs = require('fs')
 
-server.start(config)
+server.start(config, __dirname)
 
 fs.createWriteStream("cmd/pids", {
 flags: "a",

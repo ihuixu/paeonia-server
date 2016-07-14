@@ -1,13 +1,13 @@
 {
-	"appPath": "../",
+	"appPath": "../apps",
 	"path": {
 		"controller": "controller/",
 		"model": "model/",
 		"views": "views/"
 	},
 	"hosts": {
-		"xhwww.paeonia.com" : "paeonia/www",
-		"xhm.paeonia.com" : "paeonia/m"
+		"xhwww.paeonia.com" : "www",
+		"xhm.paeonia.com" : "m"
 	},
 	"site": {
 		"pageTitle": "pageTitle",
