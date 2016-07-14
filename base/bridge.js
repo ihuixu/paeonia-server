@@ -40,11 +40,6 @@ module.exports = {
 			}
 		}
 	}
-
-	, render : function(tplname, data){
-		this.body = arguments
-	}
-
 }
 
 
