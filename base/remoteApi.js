@@ -1,6 +1,4 @@
 var request = require('request')
-var querystring = require('querystring')
-var url = require('url')
 var Promise = require('bluebird')
 
 module.exports = function(php){
