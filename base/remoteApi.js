@@ -28,7 +28,12 @@ module.exports = function(php){
 
 			}, function(error, response, body){
 
-				resolve(body)
+				if(!error && response.statusCode == 200){
+          resolve(body)
+
+        }else{
+          resolve(false)
+        }
 
 			})
 
