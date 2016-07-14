@@ -1,7 +1,7 @@
 var path = require('path')
 
 var config = require('./config')
-var base = require('./base/base')
+var controller = require('./base/controller')
 var route = require('./base/route')
 
 var koa = require('koa')
@@ -24,8 +24,8 @@ app.use(function *(next){
 
 app.use(function *(next){
 
-	for(var i in base){
-		this[i] = base[i]
+	for(var i in controller){
+		this[i] = controller[i]
 	}
 
 	yield next

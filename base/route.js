@@ -15,7 +15,7 @@ module.exports = function(){
 		controllerPath = path.join(controllerBase, arr.join('/')+'.js')
 	}
 
-	console.log(controllerPath, method, args)
+//	console.log(controllerPath, method, args)
 
 	var controller = require(controllerPath)
 
