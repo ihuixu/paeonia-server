@@ -1,1 +1,1 @@
-exports.start = require('./service')
+exports.start = require('./server')
