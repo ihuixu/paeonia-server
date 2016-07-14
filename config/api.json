@@ -1,7 +1,0 @@
-{
-	"hosts": {
-		"v" : "pandora.service.lehe.com"
-	},
-	"debug":true,
-	"timeout": 5000
-}

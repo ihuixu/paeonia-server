@@ -7,7 +7,7 @@ module.exports = function(php){
 
 	for(var tag in php){
 		var arr = php[tag].split('::')
-		var api = 'http://' + this.config.api.hosts[arr[0]] + arr[1]
+		var api = 'http://' + this.config.apis[arr[0]] + arr[1]
 
 		var fn = create(api)
 
