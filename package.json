@@ -1,5 +1,7 @@
 {
   "dependencies": {
-    "koa": "^1.2.0"
+    "bluebird": "^3.4.1",
+    "koa": "^1.2.0",
+    "request": "^2.73.0"
   }
 }
