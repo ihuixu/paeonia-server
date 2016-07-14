@@ -16,7 +16,7 @@ app.use(function *(next){
 })
 
 app.use(function *(next){
-	this.config = config[config.virtualHost[this.host]]
+	this.config = config
 	yield next
 
 })

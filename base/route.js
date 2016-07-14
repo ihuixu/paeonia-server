@@ -2,7 +2,8 @@ var path = require('path')
 var fs = require('fs')
 
 module.exports = function(){	
-	var controllerBase = path.join(this.config.hostPath, this.config.path.controller)
+	var config = this.config[this.config.virtualHost[this.host]]
+	var controllerBase = path.join(config.hostPath, config.path.controller)
 
 	var arr = this.url.split('/')
 	var args = arr.pop()

@@ -1,6 +1,6 @@
 {
 	"hosts": {
-		"apis" : "apis.paeonia.com"
+		"v" : "pandora.service.lehe.com"
 	},
 	"debug":true,
 	"timeout": 5000

@@ -4,7 +4,7 @@ var base = require ('./config/base.json')
 var file = require('./base/file')
 
 exports.etc = require ('./config/etc.json') 
-exports.api = require ('./config/api.json'); ;
+exports.api = require ('./config/api.json')
 
 var virtualHost = require('./config/virtual_host.json')
 exports.virtualHost = virtualHost
