@@ -1,7 +1,5 @@
 var path = require('path')
 var fs = require('fs')
-var Promise = require('bluebird')
-
 
 function mkFile(filePath, content){
 	return new Promise(function(resolve, reject) {
