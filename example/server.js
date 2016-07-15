@@ -1,6 +1,8 @@
 var server = require('paeonia-server')
-var config = require('./config.json')
+var loader = require('cello-loader')
 
-server.start(config, __dirname)
+var config = require('./config.json')
+config.dirname = __dirname
+server.start(config)
 
 
