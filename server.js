@@ -7,7 +7,7 @@ var route = require('./base/route')
 
 var koa = require('koa')
 
-module.exports = function(config, loader){
+module.exports = function(config, extFn){
 	config = setConfig(config)
 
 	var app = koa()
@@ -35,7 +35,7 @@ module.exports = function(config, loader){
 			this[i] = bridge[i]
 		}
 
-		this.render = render.call(this, loader(this.appConfig.static))
+		this.render = render.call(this, extFn(this.appConfig))
 
 		yield next
 

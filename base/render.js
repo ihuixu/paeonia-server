@@ -2,7 +2,9 @@ var ejs = require('ejs')
 var path = require('path')
 var file = require('./file')
 
-module.exports = function(loader){
+module.exports = function(extFn){
+	extFn = extFn || {}
+
 	var mSelf = this
 
 	return function(tplname, data){
@@ -12,10 +14,15 @@ module.exports = function(loader){
 
 		var tpl = file.readFile(viewPath)
 
-		mSelf.body = ejs.render(tpl, {
-			filename : viewPath 
-			, loader : loader
-		})
+		var options = {
+			filename : viewPath
+		}
+
+		for(var i in extFn){
+			options[i] = extFn[i]
+		}
+
+		mSelf.body = ejs.render(tpl, options)
 
 	}
 }
