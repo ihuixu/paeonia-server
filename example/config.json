@@ -20,10 +20,8 @@
 	"hostDefault": {
 		"demo1": "welcome"
 	},
-	"etc": {
-		"debug":true,
-		"timeout": 5000,
-		"cpuNums": "1",
-		"onPort": 9001
-	}
+	"debug":true,
+	"timeout": 5000,
+	"cpuNums": "1",
+	"onPort": 9001
 }

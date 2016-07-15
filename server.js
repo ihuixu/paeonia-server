@@ -52,5 +52,5 @@ module.exports = function(config, dirname){
 
 	})
 
-	app.listen(config.etc.onPort || 9001)
+	app.listen(config.onPort || 9001)
 }

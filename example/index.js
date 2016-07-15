@@ -1,7 +1,7 @@
 var cluster = require('cluster')
 
 var config = require('./config.json')
-var numCPUs = config.etc.cpuNums || require('os').cpus().length
+var numCPUs = config.cpuNums || require('os').cpus().length
 
 cluster.setupMaster({
 	exec: './server.js',
