@@ -35,7 +35,7 @@ module.exports = function(config, loader){
 			this[i] = bridge[i]
 		}
 
-		this.render = render.call(this, loader)
+		this.render = render.call(this, loader(this.appConfig.static))
 
 		yield next
 
