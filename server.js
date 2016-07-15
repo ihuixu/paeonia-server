@@ -7,7 +7,7 @@ var route = require('./base/route')
 
 var koa = require('koa')
 
-module.exports = function(config){
+module.exports = function(config, loader){
 	config = setConfig(config)
 
 	var app = koa()
@@ -22,6 +22,8 @@ module.exports = function(config){
 
 	app.use(function *(next){
 		this.config = config
+		this.appConfig = config[config.hosts[this.host]]
+
 		yield next
 
 	})
@@ -33,7 +35,7 @@ module.exports = function(config){
 			this[i] = bridge[i]
 		}
 
-		this.render = render
+		this.render = render(loader)
 
 		yield next
 

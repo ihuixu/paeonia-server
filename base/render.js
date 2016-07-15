@@ -2,16 +2,22 @@ var ejs = require('ejs')
 var path = require('path')
 var file = require('./file')
 
-module.exports = function(tplname, data){
-	var config = this.config[this.config.hosts[this.host]]
-	var viewsBase = path.join(config.hostPath, config.path.views)
-	var viewPath = path.join(viewsBase, tplname)
+module.exports = function(loader){
+	var loaderFn = loader(this.appConfig)
 
-	var tpl = file.readFile(viewPath)
+	return function(tplname, data){
+		var config = this.appConfig
+		var viewsBase = path.join(config.hostPath, config.path.views)
+		var viewPath = path.join(viewsBase, tplname)
 
-	this.body = ejs.render(tpl, {
-		filename : viewPath 
-	})
+		var tpl = file.readFile(viewPath)
+
+		this.body = ejs.render(tpl, {
+			filename : viewPath 
+			, loader : loaderFn
+		})
+
+	}
 }
 
 
