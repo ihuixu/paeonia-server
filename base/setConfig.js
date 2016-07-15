@@ -4,7 +4,7 @@ var file = require('./file')
 var defaultConfig = require('../config.json')
 
 
-module.exports = function(config, dirname){
+module.exports = function(config){
 	config = config || {}
 	for(var i in defaultConfig){
 
@@ -16,7 +16,7 @@ module.exports = function(config, dirname){
 	var cPath = config.path
 
 	for (var i in config.hosts) {
-		var hostPath = path.join(dirname, config.appPath, config.hosts[i])
+		var hostPath = path.join(config.dirname, config.appPath, config.hosts[i])
 		var appConfig = {}
 
 		appConfig.hostPath = hostPath

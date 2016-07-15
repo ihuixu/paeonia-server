@@ -7,8 +7,8 @@ var route = require('./base/route')
 
 var koa = require('koa')
 
-module.exports = function(config, dirname){
-	config = setConfig(config, dirname)
+module.exports = function(config){
+	config = setConfig(config)
 
 	var app = koa()
 
