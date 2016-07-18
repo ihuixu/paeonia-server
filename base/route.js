@@ -4,6 +4,10 @@ var fs = require('fs')
 module.exports = function(){	
 	var controllerBase = path.join(this.appConfig.hostPath, this.appConfig.path.controller)
 
+	if(this.url == '/favicon.ico'){
+		return;
+	}
+
 	var url = this.url == '/'	
 						? this.appConfig.hostDefault
 						: this.url
