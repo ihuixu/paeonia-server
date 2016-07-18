@@ -27,10 +27,10 @@ module.exports = {
 			return new Promise(function(resolve, reject){
 				try{
 					var data = file.readFile(filepath)
-					resolve(data)
+					resolve({code:0, data:data})
 
 				}catch(err){
-					reject(err)
+					reject({code:1, err:err})
 
 				}
 
