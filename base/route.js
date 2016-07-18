@@ -4,13 +4,13 @@ var fs = require('fs')
 module.exports = function(){	
 	var controllerBase = path.join(this.appConfig.hostPath, this.appConfig.path.controller)
 
-	if(this.url == '/favicon.ico'){
+	var url = this.url.split('?')[0]
+
+	if(url == '/favicon.ico'){
 		return;
 	}
 
-	var url = this.url == '/'	
-						? this.appConfig.hostDefault
-						: this.url
+	url == '/' && (url = this.appConfig.hostDefault)
 
 	var arr = url.split('/')
 	var args = arr.pop()
