@@ -18,7 +18,7 @@
 		"api1" : "api1.com"
 	},
 	"hostDefault": {
-		"demo1": "welcome"
+		"demo1.paeonia.com": "welcome"
 	},
 	"debug":true,
 	"timeout": 5000,
