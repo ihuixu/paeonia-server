@@ -5,6 +5,7 @@ var bridge = require('./base/bridge')
 var listen = require('./base/listen')
 var model = require('./base/model')
 var render = require('./base/render')
+var send = require('./base/send')
 var route = require('./base/route')
 
 var koa = require('koa')
@@ -46,6 +47,7 @@ module.exports = function(config, extFn){
 		}
 
 		this.render = render.call(this, extFn(this.appConfig))
+		this.send = send.call(this)
 
 		yield next
 
