@@ -2,17 +2,21 @@ var path = require('path')
 var fs = require('fs')
 
 module.exports = function(){	
-	var config = this.appConfig
-	var controllerBase = path.join(config.hostPath, config.path.controller)
+	var controllerBase = path.join(this.appConfig.hostPath, this.appConfig.path.controller)
 
-	var arr = this.url.split('/')
+	var url = this.url == '/'	
+						? this.appConfig.hostDefault
+						: this.url
+
+	var arr = url.split('/')
 	var args = arr.pop()
 	var method = 'index'
 	var controllerPath = path.join(controllerBase, arr.join('/')+'.js')
 
 	if(!fs.existsSync(controllerPath)){
 		method = arr.pop()
-		controllerPath = path.join(controllerBase, arr.join('/')+'.js')
+
+		controllerPath = path.join(controllerBase, arr.join('/') + '.js')
 	}
 
 //	console.log(controllerPath, method, args)

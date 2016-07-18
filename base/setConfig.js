@@ -20,6 +20,7 @@ module.exports = function(config){
 		var appConfig = {}
 
 		appConfig.hostPath = hostPath
+		appConfig.hostDefault = config.hostDefault[i]
 
 		var appStaticPath = path.join(hostPath,  '/static/config.json')
 		appConfig.static = fs.existsSync(appStaticPath) ? require(appStaticPath) : {}
