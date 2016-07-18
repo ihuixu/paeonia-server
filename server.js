@@ -22,7 +22,7 @@ module.exports = function(config, extFn){
 
 	app.use(function *(next){
 		this.config = config
-		this.appConfig = config[config.hosts[this.host]]
+		this.appConfig = config[this.host]
 
 		yield next
 

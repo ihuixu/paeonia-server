@@ -57,7 +57,7 @@ module.exports = function(config){
 			}
 		}
 
-		config[config.hosts[i]] = appConfig
+		config[i] = appConfig
 	}
 
 	return config
