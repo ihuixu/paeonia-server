@@ -46,6 +46,9 @@ module.exports = function(config, extFn){
 
 		var data = {}
 
+		if(this.model)
+			yield this.model()
+
 		if(this.bridge)
 			data = yield this.bridge()
 

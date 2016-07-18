@@ -22,6 +22,10 @@ module.exports = function(extFn){
 			options[i] = extFn[i]
 		}
 
+		for(var i in data){
+			options[i] = data[i]
+		}
+
 		mSelf.body = ejs.render(tpl, options)
 
 	}
