@@ -1,11 +1,7 @@
 var remoteApi = require('./remoteApi')
 
 module.exports = {	
-	bindDefault : function(php){
-		this.php = {}
-	}
-
-	, bridgeMuch : function(php){
+	bridgeMuch : function(php){
 		var mSelf = this
 		php = php || {}
 
@@ -28,16 +24,6 @@ module.exports = {
 
 				})
 			})
-		}
-	}
-
-	, listenOver : function(callback){
-		var mSelf = this
-		this.listen = function(data){
-
-			return function *(){
-				callback.call(mSelf, data)
-			}
 		}
 	}
 }

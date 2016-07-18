@@ -2,6 +2,8 @@ var path = require('path')
 
 var setConfig = require('./base/setConfig')
 var bridge = require('./base/bridge')
+var listen = require('./base/listen')
+var model = require('./base/model')
 var render = require('./base/render')
 var route = require('./base/route')
 
@@ -31,8 +33,16 @@ module.exports = function(config, extFn){
 
 	app.use(function *(next){
 
+		for(var i in model){
+			this[i] = model[i]
+		}
+
 		for(var i in bridge){
 			this[i] = bridge[i]
+		}
+
+		for(var i in listen){
+			this[i] = listen[i]
 		}
 
 		this.render = render.call(this, extFn(this.appConfig))

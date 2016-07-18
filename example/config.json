@@ -9,16 +9,16 @@
 		"demo1.paeonia.com" : "demo1",
 		"demo2.paeonia.com" : "demo2"
 	},
-	"site": {
-		"pageTitle": "pageTitle",
-		"keywords": "keywords",
-		"description": "description"
+	"hostDefault": {
+		"demo1.paeonia.com": "welcome"
 	},
 	"apis": {
 		"api1" : "api1.com"
 	},
-	"hostDefault": {
-		"demo1.paeonia.com": "welcome"
+	"site": {
+		"pageTitle": "pageTitle",
+		"keywords": "keywords",
+		"description": "description"
 	},
 	"debug":true,
 	"timeout": 5000,
