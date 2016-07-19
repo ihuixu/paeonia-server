@@ -30,6 +30,8 @@ module.exports = function(extFn){
 			options[i] = data[i]
 		}
 
+		options['_CSSLinks'] || (options['_CSSLinks'] = [])
+
 		mSelf.body = ejs.render(tpl, options)
 
 	}
