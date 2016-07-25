@@ -1,10 +1,10 @@
 {
   "name": "paeonia-server",
   "description": "paeonia-server nodejs 服务端 文件路径 route koa",
-  "version": "0.0.26",
+  "version": "0.0.27",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/xh1021/paeonia-server.git"
+    "url": "git+https://github.com/ihuixu/paeonia-server.git"
   },
   "author": {
     "name": "huixu",
