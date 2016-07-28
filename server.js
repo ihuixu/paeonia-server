@@ -1,6 +1,6 @@
 var path = require('path')
 
-var setConfig = require('./base/setConfig')
+var setConfig = require('./config')
 var bridge = require('./base/bridge')
 var listen = require('./base/listen')
 var model = require('./base/model')
