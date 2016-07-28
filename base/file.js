@@ -2,14 +2,13 @@ var path = require('path')
 var fs = require('fs')
 
 function mkFile(filePath, content){
-	return new Promise(function(resolve, reject) {
-		fs.writeFile(filePath, content, "utf-8", function(){
-			
-			console.log('updateFile', filePath)
-			resolve();
+	try{
+		return fs.writeFileSync(filePath, content, "utf-8")
 
-		})
-	})
+	}catch(e){
+		console.log(e)
+		return ''
+	}
 }
 
 function mkDir(dirName){
