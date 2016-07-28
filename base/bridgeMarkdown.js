@@ -34,7 +34,7 @@ module.exports = function(filepath, tag){
 
 			}
 
-			data['markdown' || filepath] = res
+			data[tag || 'markdown'] = res
 
 			resolve(data)
 		})
