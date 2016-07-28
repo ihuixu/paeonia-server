@@ -1,11 +1,7 @@
 module.exports = {	
 	listenOver : function(callback){
-		var mSelf = this
-		this.listen = function(data){
-
-			return function *(){
-				callback.call(mSelf, data)
-			}
+		this.listen = function*(data){
+			callback.call(this, data)
 		}
 	}
 }
