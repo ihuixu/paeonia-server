@@ -16,28 +16,25 @@ marked.setOptions({
 module.exports = function(filepath, tag){
 	filepath = path.join(this.appConfig.hostPath, filepath)
 
-	this.bridge = function(){
-		return new Promise(function(resolve, reject){
+	this.bridge = function*(){
+		var data = {}
+		var res = {}
 
-			var data = {}
-			var res = {}
+		try{
+			var md = file.readFile(filepath)
+			var html = marked(md)
 
-			try{
-				var md = file.readFile(filepath)
-				var html = marked(md)
+			res = {code:0, data:html}
 
-				res = {code:0, data:html}
+		}catch(err){
 
-			}catch(err){
+			res = {code:1, err:err}
 
-				res = {code:1, err:err}
+		}
 
-			}
+		data[tag || 'markdown'] = res
 
-			data[tag || 'markdown'] = res
-
-			resolve(data)
-		})
+		return data
 	}
 }
 
