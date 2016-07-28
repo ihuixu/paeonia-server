@@ -11,16 +11,11 @@ module.exports = function(php){
 
 	this.php = php
 
-	this.bridge = function(){
-		return new Promise(function(resolve, reject){
+	this.bridge = function*(){
 
-			remoteApi.call(mSelf, php).then(function(data){
-				resolve(data)
+		var data = yield remoteApi.call(mSelf, php)
+		
+		return data
 
-			}, function(err){
-				reject(err)
-
-			})
-		})
 	}
 }
