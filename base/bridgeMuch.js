@@ -13,11 +13,20 @@ var remoteApi = function*(){
 	for(var tag in this.php){
 		var arr = this.php[tag].split('::')
 
-		fns[tag] = yield requestSync({
-			url: 'http://' + this.config.apis[arr[0]] + arr[1] 
-			, json: true
-			, method: 'GET'
-		})
+		try{
+			fns[tag] = yield requestSync({
+				url: 'http://' + this.config.apis[arr[0]] + arr[1] 
+				, json: true
+				, method: 'GET'
+			})
+
+		}catch(e){
+
+			fns[tag] = function*(){
+				return e
+			}
+
+		}
 	}
 
 	var data = yield fns
