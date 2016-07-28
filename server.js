@@ -1,9 +1,7 @@
 var path = require('path')
 
-var setConfig = require('./lib/config')
-var base = require('./lib/base')
-var model = require('./lib/model')
-var listen = require('./lib/listen')
+var base = require('./base')
+var setConfig = require('./base/config')
 
 var koa = require('koa')
 
@@ -33,14 +31,6 @@ module.exports = function(config, extFn){
 
 		for(var i in base){
 			this[i] = base[i]
-		}
-
-		for(var i in model){
-			this[i] = model[i]
-		}
-
-		for(var i in listen){
-			this[i] = listen[i]
 		}
 
 		this.render = base.render.call(this, extFn(this.appConfig))
