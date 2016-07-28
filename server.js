@@ -1,12 +1,9 @@
 var path = require('path')
 
-var setConfig = require('./config')
-var bridge = require('./base/bridge')
-var listen = require('./base/listen')
-var model = require('./base/model')
-var render = require('./base/render')
-var send = require('./base/send')
-var route = require('./base/route')
+var setConfig = require('./lib/config')
+var base = require('./lib/base')
+var model = require('./lib/model')
+var listen = require('./lib/listen')
 
 var koa = require('koa')
 
@@ -34,27 +31,27 @@ module.exports = function(config, extFn){
 
 	app.use(function *(next){
 
-		for(var i in model){
-			this[i] = model[i]
+		for(var i in base){
+			this[i] = base[i]
 		}
 
-		for(var i in bridge){
-			this[i] = bridge[i]
+		for(var i in model){
+			this[i] = model[i]
 		}
 
 		for(var i in listen){
 			this[i] = listen[i]
 		}
 
-		this.render = render.call(this, extFn(this.appConfig))
-		this.send = send.call(this)
+		this.render = base.render.call(this, extFn(this.appConfig))
+		this.send = base.send.call(this)
 
 		yield next
 
 	})
 
 	app.use(function *(next){
-		route.call(this)
+		base.route.call(this)
 
 		var data = {}
 
@@ -67,6 +64,7 @@ module.exports = function(config, extFn){
 		if(this.listen)
 			yield this.listen(data)
 
+		yield next
 	})
 
 	app.listen(config.onPort || 9001)
