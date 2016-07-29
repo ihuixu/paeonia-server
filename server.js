@@ -6,6 +6,8 @@ var setConfig = require('./base/config')
 var koa = require('koa')
 
 module.exports = function(config, extFn){
+	!extFn && (extFn = function(){})
+
 	config = setConfig(config)
 
 	var app = koa()
