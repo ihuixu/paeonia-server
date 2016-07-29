@@ -23,35 +23,27 @@ mkdir demo
 ```
 
 
-4.新建 config.json
+4.新建 app.js
 
 ```
-{
+var server = require('paeonia-server')
+server.start({
+  "dirname": __dirname
   "appPath": "./",
   "hosts": {
     "127.0.0.1:9007" : "demo"
   },
   "onPort": 9007
-}
+})
 ```
 
-5.新建 app.js
-
-```
-var server = require('paeonia-server')
-var config = require('./config.json')
-
-config.dirname = __dirname
-server.start(config)
-```
-
-6.启动服务
+5.启动服务
 
 ```
 node app.js
 ```
 
-7.浏览器访问
+6.浏览器访问
 
 http://127.0.0.1:9007/
 
