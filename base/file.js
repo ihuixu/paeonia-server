@@ -42,22 +42,4 @@ exports.mkDir = mkDir
 exports.readFile = readFile
 exports.readDir = readDir
 
-exports.getSource = function(filePath){
-	var filePaths = filePath.split('?')
-	filePath = filePaths[0]
-
-	var extname = path.extname(filePath)
-	if(extname != '.js' && extname != '.vue')
-		filePath += '.js'
-
-	return readFile(filePath)
-} 
-
-exports.getJSContent = function(modPath, modSource){
-	if(path.extname(modPath) == '.map')
-		return modSource||''
-
-	var jsfile = 'define("' + modPath + '",function(require, exports){\n' + (modSource||'') + '\n});\n'
-	return jsfile
-}
 
