@@ -28,9 +28,13 @@ module.exports = function(){
 		controllerPath = getPath(arr.join('/'))
 	}
 
-	var controller = require(controllerPath)
+	try{
+		var controller = require(controllerPath)
+		controller[method] && controller[method].call(this, args)
 
-	controller[method] && controller[method].call(this, args)
+	}catch(e){
+		console.log(e)
+	}
 }
 
 
