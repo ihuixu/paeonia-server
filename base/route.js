@@ -14,7 +14,9 @@ module.exports = function(){
 		return;
 	}
 
-	url == '/' && (url += (this.appConfig.hostDefault || 'index'))
+	if(url == '/'){
+		url = path.join(url, this.appConfig.hostDefault || 'index')
+	}
 
 	var arr = url.split('/')
 	var args = arr.pop()
