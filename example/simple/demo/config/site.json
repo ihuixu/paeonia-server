@@ -1,0 +1,5 @@
+{
+    "controller": "controller/",
+    "model": "model/",
+    "views": "views/"
+}

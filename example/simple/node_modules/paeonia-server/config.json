@@ -1,0 +1,29 @@
+{
+	"appPath": "../",
+	"path": {
+		"controller": "controller/",
+		"model": "model/",
+		"views": "views/"
+	},
+	"hosts": {
+		"xhwww.paeonia.com" : "paeonia/www",
+		"xhm.paeonia.com" : "paeonia/m"
+	},
+	"site": {
+		"pageTitle": "pageTitle",
+		"keywords": "keywords",
+		"description": "description"
+	},
+	"apis": {
+		"v" : "pandora.service.lehe.com"
+	},
+	"hostDefault": {
+		"paeonia/m": "welcome"
+	},
+	"etc": {
+		"debug":true,
+		"timeout": 5000,
+		"cpuNums": "1",
+		"onPort": 9001
+	}
+}

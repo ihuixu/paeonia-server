@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "paeonia-server": "~0.0.35"
+  }
+}
