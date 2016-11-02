@@ -4,8 +4,7 @@ var file = require('../base/file')
 var defaultConfig = require('../config.json')
 
 
-module.exports = function(config){
-	config = config || {}
+module.exports = function(config = {}){
 	for(var i in defaultConfig){
 
 		if(config[i] === undefined)

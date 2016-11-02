@@ -1,6 +1,4 @@
-module.exports = function(extFn){
-	extFn = extFn || {}
-
+module.exports = function(extFn = {}){
 	var mSelf = this
 
 	return function(data){
