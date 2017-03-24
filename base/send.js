@@ -1,10 +1,12 @@
-module.exports = function(extFn = {}){
-	var mSelf = this
+module.exports = function *(next){
+  this.send = send.call(this)
+  yield next
+}
 
-	return function(data){
-		mSelf.body = data 
-
-	}
+function send(){
+  return function(data){
+    this.body = data 
+  }
 }
 
 

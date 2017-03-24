@@ -1,14 +1,14 @@
 var path = require('path')
 
-var base = require('./base')
 var setConfig = require('./base/config')
+
+var route = require('./base/route')
 
 var koa = require('koa')
 
 module.exports = function(config, extFn){
-	!extFn && (extFn = function(){})
-
 	config = setConfig(config)
+	!extFn && (extFn = function(){})
 
 	var app = koa()
 
@@ -20,31 +20,43 @@ module.exports = function(config, extFn){
 
 	})
 
+
 	app.use(function *(next){
 		this.config = config
 		this.appConfig = config[this.host]
+    this.extFn = extFn(config[this.host])
 
 		yield next
+	})
 
+/*
+  app.use(require('./base/bridgeMuch'))
+  app.use(require('./base/bridgeMarkdown'))
+
+  app.use(require('./base/listen'))
+  app.use(require('./base/model'))
+for(var i in listen){
+	exports[i] = listen[i]
+}
+
+for(var i in model){
+	exports[i] = model[i]
+}
+
+
+  */
+
+
+  app.use(require('./base/send'))
+  app.use(require('./base/render'))
+
+	app.use(function *(next){
+		route.call(this)
+		yield next
 	})
 
 
 	app.use(function *(next){
-
-		for(var i in base){
-			this[i] = base[i]
-		}
-
-		this.render = base.render.call(this, extFn(this.appConfig))
-		this.send = base.send.call(this)
-
-		yield next
-
-	})
-
-	app.use(function *(next){
-		base.route.call(this)
-
 		var data = {}
 
 		if(this.model)

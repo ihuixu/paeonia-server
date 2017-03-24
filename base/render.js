@@ -2,8 +2,12 @@ var ejs = require('ejs')
 var path = require('path')
 var file = require('./file')
 
-module.exports = function(extFn = {}){
+module.exports = function *(next){
+  this.render = render.call(this)
+  yield next
+}
 
+function render(){
 	var mSelf = this
 
 	return function(tplname, data){
@@ -17,8 +21,8 @@ module.exports = function(extFn = {}){
 			filename : viewPath
 		}
 
-		for(var i in extFn){
-			options[i] = extFn[i]
+		for(var i in mSelf.extFn){
+			options[i] = mSelf.extFn[i]
 		}
 
 		for(var i in mSelf.appConfig.site){
