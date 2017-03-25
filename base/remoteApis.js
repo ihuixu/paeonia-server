@@ -1,51 +1,60 @@
 var request = require('request')
 
-module.exports = function *(next){
-  var mSelf = this
+function requestSync(options) {
+	return function (done) {
+    console.log(done)
+		request(options, done)
+	}
+}
 
-  this.remoteApis = function(){
+
+var remoteApi = function*(){
+	var fns = {}
+
+	for(var tag in this.apis){
+		var arr = this.apis[tag].split('::')
+
+		try{
+			fns[tag] = yield requestSync({
+				url: 'http://' + this.config.apis[arr[0]] + arr[1] 
+				, json: true
+				, method: 'GET'
+			})
+
+		}catch(e){
+
+			fns[tag] = function*(){
+				return e
+			}
+
+		}
+	}
+
+  console.log(fns)
+
+	var data = yield fns
+
+	return data 
+}
+
+
+module.exports = function *(next){
+	this.apis = this.apis || {}
+
+	for(var i in apis){
+		this.apis[i] = apis[i]
+	}
+
+	this.remoteApis = function *(){
 
     if(!mSelf.apis)
       mSelf.apis = {}
 
-    var fns = {}
+		var data = yield remoteApi.call(this)
+		
+		return data
 
-    for(var tag in mSelf.apis){
-      var arr = mSelf.apis[tag].split('::')
-
-      try{
-        fns[tag] = function (next){
-          request({
-            url: 'http://' + mSelf.config.apis[arr[0]] + arr[1] 
-            , json: true
-            , method: 'GET'
-          }, function(){
-
-            console.log(123)
-          
-          })
-
-        }
-
-      }catch(e){
-
-        fns[tag] = function*(){
-          return e
-        }
-
-      }
-    }
-
-    console.log('fns', fns)
-
-    var data = yield fns
-
-    console.log('data', data)
-
-  }
+	}
 
   yield next
 }
-
-
-

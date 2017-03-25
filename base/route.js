@@ -3,10 +3,7 @@ var fs = require('fs')
 
 module.exports = function *(next){
   yield next
-  route.call(this)
-}
 
-function route(){	
 	var controllerBase = path.join(this.appConfig.hostPath, this.appConfig.path.controller)
 
 	function getPath(routePath){
@@ -40,6 +37,7 @@ function route(){
 	}catch(e){
 		console.log(e)
 	}
+
 }
 
 

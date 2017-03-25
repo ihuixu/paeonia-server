@@ -23,26 +23,11 @@ module.exports = function(config, extFn){
     yield next
   })
 
-  app.use(require('./base/bindApis'))
-  app.use(require('./base/remoteApis'))
   app.use(require('./base/send'))
   app.use(require('./base/render'))
+  app.use(require('./base/remoteApis'))
+  app.use(require('./base/bindApis'))
   app.use(require('./base/route'))
-
-	app.use(function *(next){
-		var data = {}
-
-		if(this.model)
-			yield this.model()
-
-		if(this.bridge)
-			data = yield this.bridge()
-
-		if(this.listen)
-			yield this.listen(data)
-
-		yield next
-	})
 
 	app.listen(config.onPort || 9001)
 }

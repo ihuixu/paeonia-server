@@ -2,6 +2,7 @@ var request = require('request')
 
 function requestSync(options) {
 	return function (done) {
+  console.log(done)
 		request(options, done)
 	}
 }
@@ -28,6 +29,8 @@ var remoteApi = function*(){
 
 		}
 	}
+
+  console.log(fns)
 
 	var data = yield fns
 
