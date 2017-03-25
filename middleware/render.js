@@ -5,8 +5,7 @@ var file = require('../base/file')
 module.exports = function *(next){
   this.render = function(tplname, data){
 
-    var config = this.appConfig
-    var viewsBase = path.join(config.hostPath, config.path.views)
+    var viewsBase = path.join(this.config.hostPath, this.config.path.views)
 
     var viewPath = path.join(viewsBase, tplname)
     var tpl = file.readFile(viewPath)
@@ -15,12 +14,8 @@ module.exports = function *(next){
       filename : viewPath
     }
 
-    for(var i in this.extFn){
-      options[i] = this.extFn[i]
-    }
-
-    for(var i in this.appConfig.site){
-      options[i] = this.appConfig.site[i]
+    for(var i in this.config.site){
+      options[i] = this.config.site[i]
     }
 
     for(var i in data){
@@ -28,6 +23,9 @@ module.exports = function *(next){
     }
 
     options['_CSSLinks'] || (options['_CSSLinks'] = [])
+
+    console.log(tpl)
+    console.log(options)
 
     this.body = ejs.render(tpl, options)
   }

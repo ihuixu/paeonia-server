@@ -22,7 +22,7 @@ module.exports = function(config){
 
   app.use(require('./middleware/route'))
 
-	//app.listen(config.etc.onPort)
+	app.listen(config.etc.onPort)
 
   return this
 }

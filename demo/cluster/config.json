@@ -1,21 +1,16 @@
 {
 	"appPath": "../apps",
 	"path": {
-		"controller": "controller/",
-		"model": "model/",
-		"views": "views/"
 	},
 	"hosts": {
 		"demo1.paeonia.com" : "demo1",
 		"demo2.paeonia.com" : "demo2"
 	},
-	"hostDefault": {
-		"demo1.paeonia.com": "welcome"
-	},
 	"apis": {
 		"api1" : "api1.com"
 	},
 	"site": {
+		"homePage": "welcome",
 		"pageTitle": "pageTitle",
 		"keywords": "keywords",
 		"description": "description"

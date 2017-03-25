@@ -11,9 +11,7 @@ module.exports = {
 
 function configure(opts = {}){
   configUser = opts
-  configAll = config(configUser)
-
-  console.log('configAll', configAll)
+  configAll = config.call(this, configUser)
 
   return this
 }

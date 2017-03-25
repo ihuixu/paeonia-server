@@ -15,7 +15,13 @@ function testDir(dirPath){
 }
 
 module.exports = function(configUser = {}){
-  var configAll = {}
+  var etc = {}
+  sync(etc, configDefault['etc'])
+  sync(etc, configUser['etc'])
+
+  var configAll = {
+    etc : etc
+  }
 
   var hosts = (configUser.hosts && JSON.stringify(configUser.hosts) !== '{}') ? configUser.hosts : configDefault.host
 
@@ -23,6 +29,7 @@ module.exports = function(configUser = {}){
 
     var config = {
       serverPath : path.join(__dirname, '../../')
+      , etc : configAll['etc'] 
     }
 
     config.appPath = path.join(config.serverPath, (configUser['appPath'] || configDefault['appPath']))

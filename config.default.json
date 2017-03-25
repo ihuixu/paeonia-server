@@ -9,7 +9,7 @@
 		"127.0.0.1:9001" : "paeonia"
 	},
 	"site": {
-    "index":"welcome",
+    "homePage":"welcome",
 		"pageTitle": "pageTitle",
 		"keywords": "keywords",
 		"description": "description"

@@ -4,7 +4,7 @@ var fs = require('fs')
 module.exports = function *(next){
   yield next
 
-	var controllerBase = path.join(this.appConfig.hostPath, this.appConfig.path.controller)
+	var controllerBase = path.join(this.config.hostPath, this.config.path.controller)
 
 	function getPath(routePath){
 		return path.join(controllerBase, (routePath || 'index')+'.js')
@@ -17,7 +17,7 @@ module.exports = function *(next){
 	}
 
 	if(url == '/'){
-		url = path.join(url, this.appConfig.hostDefault || 'index')
+		url = path.join(url, this.config.site.homePage || 'index')
 	}
 
 	var arr = url.split('/')
