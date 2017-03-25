@@ -1,13 +1,13 @@
 var server = require('paeonia-server')
-var loader = require('cello-loader')
-
 var config = require('./config.json')
-config.dirname = __dirname
 
-server.start(config, function(config){
-	return {
-		loader : loader(config.static)
-	} 
+var mwNames = ['loader']
+var mws = {}
+
+mwNames.map(function(v){
+  mws[v] = require('./middleware/'+v)
 })
+
+server.start(config, mws)
 
 
