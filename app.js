@@ -1,15 +1,19 @@
 var server = require('./server')
 var config = require('./config')
-var mw = require('./mw')
 
 module.exports = {
-  config : {}
-  , mw : {}
-  , start : function(opts = {}){
-    if(!this.config.appPath)
-      this.configure(opts)
+  config : null
+  , mws : null
+  , start : function(config = {}, mws = {}){
+
+    if(!this.config)
+      this.configure(config)
+
+    if(!this.mws)
+      this.middleware(mws)
 
     server.call(this)
+
     return this
   }
   , configure : function(opts = {}){
@@ -17,7 +21,7 @@ module.exports = {
     return this
   }
   , middleware : function(opts = {}){
-    this.mw = mw.call(this, opts)
+    this.mws = opts 
     return this
   }
 }

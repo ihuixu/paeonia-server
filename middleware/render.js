@@ -3,9 +3,9 @@ var path = require('path')
 var file = require('../base/file')
 
 module.exports = function *(next){
-  this.render = function(tplname, data){
+  var mSelf = this
 
-    var mSelf = this
+  this.render = function(tplname, data){
 
     var viewPath = path.join(this.config.path.views, tplname)
     var viewRoot = path.join(this.config.path.views, 'root')
@@ -14,6 +14,11 @@ module.exports = function *(next){
     for(var i in this.config.site){
       data[i] = this.config.site[i]
     }
+
+    for(var i in this.mws){
+      data[i] = this[i]
+    }
+
     data['_CSSLinks'] || (data['_CSSLinks'] = [])
 
     var template = ejs.compile(str, {

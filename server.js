@@ -4,7 +4,7 @@ var app = koa()
 module.exports = function(){
   
   var config = this.config || {}
-  var middleware = this.middleware || {}
+  var mws = this.mws || {}
 
 	app.use(function *(next){
 		var start = new Date
@@ -13,13 +13,16 @@ module.exports = function(){
 		console.log('%s %s - %s', this.method, this.host, this.url, ms+'ms')
 
 	})
+
   app.use(function *(next){
+    this.mws = mws
     this.config = config[this.host]
     yield next
+
   })
 
-  for(var i in middleware){
-    app.use(middleware[i])
+  for(var i in mws){
+    app.use(mws[i])
   }
 
   app.use(require('./middleware/send'))
