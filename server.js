@@ -1,10 +1,6 @@
-var path = require('path')
-
-var setConfig = require('./base/config')
-
-var route = require('./base/route')
-
 var koa = require('koa')
+var path = require('path')
+var setConfig = require('./base/config')
 
 module.exports = function(config, extFn){
 	config = setConfig(config)
@@ -19,15 +15,14 @@ module.exports = function(config, extFn){
 		console.log('%s %s - %s', this.method, this.host, this.url, ms+'ms')
 
 	})
-
-
-	app.use(function *(next){
-		this.config = config
-		this.appConfig = config[this.host]
+  app.use(function *(next){
+    this.config = config
+    this.appConfig = config[this.host]
     this.extFn = extFn(config[this.host])
 
-		yield next
-	})
+    yield next
+  })
+
 
 /*
   app.use(require('./base/bridgeMuch'))
@@ -46,15 +41,11 @@ for(var i in model){
 
   */
 
-
+//  app.use(require('./base/bridgeMuch'))
   app.use(require('./base/send'))
   app.use(require('./base/render'))
 
-	app.use(function *(next){
-		route.call(this)
-		yield next
-	})
-
+  app.use(require('./base/route'))
 
 	app.use(function *(next){
 		var data = {}

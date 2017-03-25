@@ -1,7 +1,12 @@
 var path = require('path')
 var fs = require('fs')
 
-module.exports = function(){	
+module.exports = function *(next){
+  yield next
+  route.call(this)
+}
+
+function route(){	
 	var controllerBase = path.join(this.appConfig.hostPath, this.appConfig.path.controller)
 
 	function getPath(routePath){
