@@ -1,0 +1,25 @@
+{
+	"appPath": "../",
+	"path": {
+		"controller": "controller/",
+		"model": "model/",
+		"views": "views/"
+	},
+	"hosts": {
+		"127.0.0.1:9001" : "paeonia"
+	},
+	"site": {
+    "index":"welcome",
+		"pageTitle": "pageTitle",
+		"keywords": "keywords",
+		"description": "description"
+	},
+	"apis": {
+	},
+	"etc": {
+		"debug":true,
+		"timeout": 5000,
+		"cpuNums": "1",
+		"onPort": 9001
+	}
+}

@@ -36,9 +36,14 @@ function readDir(filePath){
 	}
 }
 
+function exist(filePath){
+  return fs.existsSync(filePath)
+}
+
 exports.mkFile = mkFile
 exports.mkDir = mkDir
 exports.readFile = readFile
 exports.readDir = readDir
+exports.exist = exist
 
 

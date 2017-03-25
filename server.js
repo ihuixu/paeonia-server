@@ -1,12 +1,7 @@
 var koa = require('koa')
-var path = require('path')
-var setConfig = require('./base/config')
+var app = koa()
 
-module.exports = function(config, extFn){
-	config = setConfig(config)
-	!extFn && (extFn = function(){})
-
-	var app = koa()
+module.exports = function(config){
 
 	app.use(function *(next){
 		var start = new Date
@@ -16,10 +11,7 @@ module.exports = function(config, extFn){
 
 	})
   app.use(function *(next){
-    this.config = config
-    this.appConfig = config[this.host]
-    this.extFn = extFn(config[this.host])
-
+    this.config = config[this.host]
     yield next
   })
 
@@ -30,5 +22,8 @@ module.exports = function(config, extFn){
 
   app.use(require('./middleware/route'))
 
-	app.listen(config.onPort || 9001)
+	//app.listen(config.etc.onPort)
+
+  return this
 }
+
