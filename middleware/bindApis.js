@@ -1,11 +1,10 @@
 module.exports = function *(next){
-  var mSelf = this
   this.bindApis = function(apis = {}){
-    if(!mSelf.apis)
-      mSelf.apis = {}
+    if(!this.apis)
+      this.apis = {}
 
     for(var i in apis){
-      mSelf.apis[i] = apis[i]
+      this.apis[i] = apis[i]
     }
   }
 
