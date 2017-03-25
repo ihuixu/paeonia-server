@@ -1,7 +1,10 @@
 var koa = require('koa')
 var app = koa()
 
-module.exports = function(config){
+module.exports = function(){
+  
+  var config = this.config || {}
+  var middleware = this.middleware || {}
 
 	app.use(function *(next){
 		var start = new Date
@@ -14,6 +17,10 @@ module.exports = function(config){
     this.config = config[this.host]
     yield next
   })
+
+  for(var i in middleware){
+    app.use(middleware[i])
+  }
 
   app.use(require('./middleware/send'))
   app.use(require('./middleware/render'))

@@ -6,7 +6,7 @@
 		"views": "views/"
 	},
 	"hosts": {
-		"127.0.0.1:9001" : "paeonia"
+		"127.0.0.1:9001" : "paeonia-demo"
 	},
 	"site": {
     "homePage":"welcome",
