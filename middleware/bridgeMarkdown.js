@@ -1,6 +1,7 @@
 var path = require('path')
-var file = require('./file')
+var file = require('../base/file')
 var marked = require('marked')
+
 marked.setOptions({
   renderer: new marked.Renderer(),
   gfm: true,

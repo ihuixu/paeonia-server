@@ -1,6 +1,6 @@
 var ejs = require('ejs')
 var path = require('path')
-var file = require('./file')
+var file = require('../base/file')
 
 module.exports = function *(next){
   var mSelf = this
