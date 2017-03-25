@@ -27,6 +27,7 @@ module.exports = function(config, extFn){
   app.use(require('./base/render'))
   app.use(require('./base/remoteApis'))
   app.use(require('./base/bindApis'))
+
   app.use(require('./base/route'))
 
 	app.listen(config.onPort || 9001)

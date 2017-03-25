@@ -2,7 +2,6 @@ var request = require('request')
 
 function requestSync(options) {
 	return function (done) {
-    console.log('done', done)
 		request(options, done)
 	}
 }
@@ -37,12 +36,27 @@ var remoteApi = function*(){
 
 
 module.exports = function *(next){
-  yield next
-
   if(!this.apis)
     this.apis = {}
 
+  if(!this.data)
+    this.data = {}
+
+  var remoteApisCbk = function(){}
+
+  this.remoteApis = function(cbk){
+    if(cbk)
+      remoteApisCbk = cbk
+  }
+
+  yield next
+
   var data = yield remoteApi.call(this)
-  
-  console.log(data)
+
+  for(var i in data){
+    this.data[i] = data[i]
+  }
+
+  remoteApisCbk.call(this, this.data)
+
 }
