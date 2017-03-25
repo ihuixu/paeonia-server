@@ -23,12 +23,12 @@ module.exports = function(config, extFn){
     yield next
   })
 
-  app.use(require('./base/send'))
-  app.use(require('./base/render'))
-  app.use(require('./base/remoteApis'))
-  app.use(require('./base/bindApis'))
+  app.use(require('./middleware/send'))
+  app.use(require('./middleware/render'))
+  app.use(require('./middleware/remoteApis'))
+  app.use(require('./middleware/bindApis'))
 
-  app.use(require('./base/route'))
+  app.use(require('./middleware/route'))
 
 	app.listen(config.onPort || 9001)
 }
