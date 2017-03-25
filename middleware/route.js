@@ -2,12 +2,12 @@ var path = require('path')
 var fs = require('fs')
 
 module.exports = function *(next){
+  var mSelf = this
+
   yield next
 
-	var controllerBase = path.join(this.config.hostPath, this.config.path.controller)
-
 	function getPath(routePath){
-		return path.join(controllerBase, (routePath || 'index')+'.js')
+		return path.join(mSelf.config.path.controller, (routePath || 'index')+'.js')
 	}
 
 	var url = this.url.split('?')[0]

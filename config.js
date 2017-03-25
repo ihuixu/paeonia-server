@@ -69,8 +69,8 @@ module.exports = function(configUser = {}){
       for(var pathName in pathConfig){
         pathConfig[pathName] = path.join(config.hostPath, pathConfig[pathName])
 
-        testDir(pathConfig[i])
-        
+        testDir(pathConfig[pathName])
+
       }
 
       config['path'] = pathConfig
