@@ -10,8 +10,8 @@ function requestSync(options) {
 var remoteApi = function*(){
 	var fns = {}
 
-	for(var tag in this.php){
-		var arr = this.php[tag].split('::')
+	for(var tag in this.apis){
+		var arr = this.apis[tag].split('::')
 
 		try{
 			fns[tag] = yield requestSync({
@@ -35,11 +35,11 @@ var remoteApi = function*(){
 }
 
 
-module.exports = function(php){
-	this.php = this.php || {}
+module.exports = function(apis){
+	this.apis = this.apis || {}
 
-	for(var i in php){
-		this.php[i] = php[i]
+	for(var i in apis){
+		this.apis[i] = apis[i]
 	}
 
 	this.bridge = function*(){

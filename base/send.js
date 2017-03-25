@@ -1,12 +1,8 @@
 module.exports = function *(next){
-  this.send = send.call(this)
+  var mSelf = this
+  this.send = function(data){
+    mSelf.body = data 
+  }
   yield next
 }
-
-function send(){
-  return function(data){
-    this.body = data 
-  }
-}
-
 

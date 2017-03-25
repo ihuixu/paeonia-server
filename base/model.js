@@ -1,5 +1,5 @@
-exports.bindDefault = function(php){
-	this.php = {}
+exports.bindDefault = function(apis){
+	this.apis = {}
 }
 
 

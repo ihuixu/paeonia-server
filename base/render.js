@@ -3,18 +3,13 @@ var path = require('path')
 var file = require('./file')
 
 module.exports = function *(next){
-  this.render = render.call(this)
-  yield next
-}
+  var mSelf = this
 
-function render(){
-	var mSelf = this
+  var config = mSelf.appConfig
+  var viewsBase = path.join(config.hostPath, config.path.views)
 
-	return function(tplname, data){
-		var config = mSelf.appConfig
-		var viewsBase = path.join(config.hostPath, config.path.views)
+  this.render = function(tplname, data){
 		var viewPath = path.join(viewsBase, tplname)
-
 		var tpl = file.readFile(viewPath)
 
 		var options = {
@@ -38,6 +33,6 @@ function render(){
 		mSelf.body = ejs.render(tpl, options)
 
 	}
+
+  yield next
 }
-
-

@@ -23,28 +23,10 @@ module.exports = function(config, extFn){
     yield next
   })
 
-
-/*
-  app.use(require('./base/bridgeMuch'))
-  app.use(require('./base/bridgeMarkdown'))
-
-  app.use(require('./base/listen'))
-  app.use(require('./base/model'))
-for(var i in listen){
-	exports[i] = listen[i]
-}
-
-for(var i in model){
-	exports[i] = model[i]
-}
-
-
-  */
-
-//  app.use(require('./base/bridgeMuch'))
+  app.use(require('./base/bindApis'))
+  app.use(require('./base/remoteApis'))
   app.use(require('./base/send'))
   app.use(require('./base/render'))
-
   app.use(require('./base/route'))
 
 	app.use(function *(next){
